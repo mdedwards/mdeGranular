@@ -32,7 +32,7 @@ able to create a windows external using Visual Studio. For PD on Linux or
 Windows I assume that the included pd-lib-builder project should take care of
 compilation. 
 
-Michael Edwards, March 9th 2020
-m@michael-edwards.org
+Michael Edwards, March 9th 2020  
+m@michael-edwards.org  
 https://www.michael-edwards.org
 
