@@ -1,13 +1,13 @@
 /******************************************************************************
  *
- * File:             mdeGranular~maxmsp.c
+ * File:             mdeGranular~.h
  *
  * Author:           Michael Edwards - m@michael-edwards.org - 
  *                   http://www.michael-edwards.org
  *
  * Date:             June 13th 2003
  *
- * $$ Last modified:  15:52:31 Fri Feb 28 2020 CET
+ * $$ Last modified:  14:56:03 Tue Mar 10 2020 CET
  *
  * Purpose:          Header file definitions for external for multi-channel, 
  *                   multi-voice, multi-transposition granular synthesis.
