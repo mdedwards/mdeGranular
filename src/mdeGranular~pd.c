@@ -7,9 +7,9 @@
  *
  * Date:             June 13th 2003
  *
- * $$ Last modified:  16:32:05 Mon Mar  9 2020 CET
+ * $$ Last modified:  15:05:26 Tue Mar 10 2020 CET
  *
- * Purpose:          MAX/MSP interface to the external for multi-channel, 
+ * Purpose:          PD interface to the external for multi-channel, 
  *                   multi-voice, multi-transposition granular synthesis.
  *
  * License:          Copyright (c) 2003 Michael Edwards
