@@ -7,14 +7,11 @@
  *
  * Date:             June 13th 2003
  *
- * $$ Last modified:  17:57:53 Fri Feb 28 2020 CET
+ * $$ Last modified:  11:22:51 Tue Mar 10 2020 CET
  *
  * Purpose:          MAX/MSP and/or PD external for multi-channel, multi-voice,
  *                   multi-transposition granular synthesis.
  *                  
- *                   See http://www.michael-edwards.org/software/mdegranular
- *                   for documentation.
- *
  * License:          Copyright (c) 2003 Michael Edwards
  *
  *                   This file is part of mdeGranular~
