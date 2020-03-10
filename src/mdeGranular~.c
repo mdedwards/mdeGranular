@@ -7,7 +7,7 @@
  *
  * Date:             June 13th 2003
  *
- * $$ Last modified:  11:22:51 Tue Mar 10 2020 CET
+ * $$ Last modified:  12:37:35 Tue Mar 10 2020 CET
  *
  * Purpose:          MAX/MSP and/or PD external for multi-channel, multi-voice,
  *                   multi-transposition granular synthesis.
@@ -77,8 +77,6 @@ void mdeGranularSetActiveVoices(mdeGranular* g, mdefloat activeVoices)
     if (g->grains)
       for (i = 0; i < g->maxVoices; ++i) {
         g->grains[i].activeStatus = (i >= av ? INACTIVE : ACTIVE);
-        /* 19/7/04 why delay when we change number of active voices on
-           the fly? */ 
         g->grains[i].doDelay = 1;
       }
   }
@@ -1756,7 +1754,7 @@ mdefloat interpolate(mdefloat findex, mdefloat* samples, long numSamples,
 
 mdefloat between(mdefloat min, mdefloat max)
 {
-  /* 2/4/08 My God, the code before was (mdefloat)(RAND_MAX + 1) but
+  /* 2/4/08 the code used to be (mdefloat)(RAND_MAX + 1) but
    * with MacIntel this obviously caused wraparound to a negative
    * int and a negative number to be returned when min and
    * max were both positive!  Should have seen that one coming....
