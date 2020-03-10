@@ -3,7 +3,7 @@
 This is mdeGranular~, a real-time, multi-channel, multi-voice,
 multi-transposition granular synthesis external for Max/MSP and PD.
 
-Documentation is on the [wiki](wiki).
+Documentation is on the [wiki](/wiki).
 
 ## Compilation 
 
