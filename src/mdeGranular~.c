@@ -7,7 +7,7 @@
  *
  * Date:             June 13th 2003
  *
- * $$ Last modified:  12:37:35 Tue Mar 10 2020 CET
+ * $$ Last modified:  12:45:02 Tue Mar 10 2020 CET
  *
  * Purpose:          MAX/MSP and/or PD external for multi-channel, multi-voice,
  *                   multi-transposition granular synthesis.
@@ -378,7 +378,7 @@ void mdeGranularSmoothMode(mdeGranular* g)
 
 /*****************************************************************************/
 
-/* 1.8.10: No longer sure we need this!
+/* 1.8.10: We no longer need this.
  * The original algorithm chooses a grain from anywhere within the current
  * sample buffer. By turning on Focus Mode we can make sure each grain starts
  * at a current read pointer. This starts at the beginning of the buffer (or
@@ -1198,8 +1198,7 @@ int mdeGranularGrainInit(mdeGranularGrain* gg, mdeGranular* parent,
   gg->icurrent = 0;
   /* ramp start/stop points take inc into consideration, so the negative or
    * positive gg->inc is important here! 
-   *
-   * 4/4/06: Really???*/
+*/
   gg->endRampUp = ramplength;
   gg->startRampDown = length - ramplength;
   /* channel is selected randomly */
@@ -1778,7 +1777,7 @@ mdefloat between(mdefloat min, mdefloat max)
 
 int flip(void)
 {
-  static const long thresh= (RAND_MAX / 2);
+  static const long thresh = (RAND_MAX / 2);
   return (rand() > thresh);
 }
 

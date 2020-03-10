@@ -2211,12 +2211,11 @@
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
 					"id" : "obj-31",
-					"linecount" : 2,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 10.0, 49.0, 494.0, 33.0 ],
-					"text" : "see http://www.michael-edwards.org/software/mdegranular/mdegranular.shtml for full documentation"
+					"patching_rect" : [ 10.0, 49.0, 494.0, 20.0 ],
+					"text" : "see https://github.com/mdedwards/mdeGranular/wiki for full documentation"
 				}
 
 			}
