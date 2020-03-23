@@ -11,8 +11,8 @@ Documentation is on the [wiki](../../wiki).
 
 ## Compilation 
 
-To compile for MaxMSP on OSX you'll need XCode and the most recent [MaxSDK]
-(https://cycling74.com/sdk/max-sdk-8.0.3/html/index.html).
+To compile for MaxMSP on OSX you'll need XCode and the most recent 
+[MaxSDK](https://cycling74.com/sdk/max-sdk-8.0.3/html/index.html).
 There's a sample XCode project in the max folder. This was created for Max SDK
 8.0.3 using XCode 11.3.1. It will not work directly as is, rather, you need to
 put the xcode folder (containing mdegranular~.xcodeproj) into the MaxSDK folder
