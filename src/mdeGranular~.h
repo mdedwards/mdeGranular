@@ -54,6 +54,9 @@
 
 #ifdef WIN32
 #define inline __inline
+#endif
+#ifdef PD
+#define inline 
 #else
 #define inline inline
 #endif

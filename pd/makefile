@@ -5,13 +5,16 @@
 # library name
 lib.name = mdeGranular~
 
+define forDarwin
 cflags = -Wno-undefined-inline
+endef
+#cflags -= -Wall
 
 common.sources = ../src/mdeGranular~.c 
 # lib.setup.sources = ../src/mdeGranular~.c
 
 # input source file (class name == source file basename)
-mdegranular~.class.sources = ../src/mdeGranular~pd.c
+mdeGranular~.class.sources = ../src/mdeGranular~pd.c
 
 # all extra files to be included in binary distribution of the library
 datafiles =
