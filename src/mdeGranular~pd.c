@@ -7,7 +7,7 @@
  *
  * Date:             June 13th 2003
  *
- * $$ Last modified:  15:05:26 Tue Mar 10 2020 CET
+ * $$ Last modified:  10:20:36 Thu Jun 18 2020 CEST
  *
  * Purpose:          PD interface to the external for multi-channel, 
  *                   multi-voice, multi-transposition granular synthesis.
@@ -149,11 +149,13 @@ void mdeGranular_tildeSet(t_mdeGranular_tilde *x, t_symbol *s)
    */ 
   g->samplingRate = srate;
   /* 18.6.20: avoid unnecessary gcc warnings: strncpy is OK here */
+#ifndef MACOSX
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wstringop-truncation"
   strncpy(g->BufferName, s->s_name, sizeof(g->BufferName));
 #pragma GCC diagnostic pop
-
+#endif
+  
   if ((got_ms && isanum((char*)(s->s_name + 2))) || isanum((char*)s->s_name)) {
     /* we got a millisecond buffer size e.g. "ms1000" for live input */
     mdefloat bufsize = atof(s->s_name + 2);
