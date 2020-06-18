@@ -8,7 +8,9 @@ lib.name = mdeGranular~
 define forDarwin
 cflags = -Wno-undefined-inline
 endef
-#cflags -= -Wall
+define forLinux
+cflags = -Wno-cast-function-type
+endef
 
 common.sources = ../src/mdeGranular~.c 
 # lib.setup.sources = ../src/mdeGranular~.c

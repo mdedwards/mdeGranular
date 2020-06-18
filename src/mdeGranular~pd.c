@@ -148,7 +148,11 @@ void mdeGranular_tildeSet(t_mdeGranular_tilde *x, t_symbol *s)
   /* MDE Thu Sep 19 10:39:17 2013 -- in case it's changed, might as well update
    */ 
   g->samplingRate = srate;
+  /* 18.6.20: avoid unnecessary gcc warnings: strncpy is OK here */
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wstringop-truncation"
   strncpy(g->BufferName, s->s_name, sizeof(g->BufferName));
+#pragma GCC diagnostic pop
 
   if ((got_ms && isanum((char*)(s->s_name + 2))) || isanum((char*)s->s_name)) {
     /* we got a millisecond buffer size e.g. "ms1000" for live input */
