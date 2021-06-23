@@ -4,8 +4,13 @@ on:
   push:
     branches:
     - master
+    - maxmsp-macosx
 
 jobs:
+
+  # ==========================
+  # Pure-Data Builds
+  # ==========================
 
   # System:         Linux
   # Architecture:   Pure Data
@@ -40,9 +45,9 @@ jobs:
         name: mdeGranular~.pd_linux
         path: ${{ github.workspace }}/mde/pd/mdeGranular~.pd_linux
 
-  # System:         macOS / Darwin
+  # System:         macOS
   # Architecture:   Pure Data
-  pd_build_darwin:
+  pd_build_macos:
     runs-on: macos-latest
     steps:
     - name: Check out Pure-Data
@@ -120,3 +125,79 @@ jobs:
       with:
         name: mdeGranular~.dll
         path: ${{ github.workspace }}/mde/pd/mdeGranular~.dll
+
+
+  # ==========================
+  # MaxMSP Builds
+  # ==========================
+
+  # System:         Windows
+  # Architecture:   MaxMSP
+  max_build_windows:
+    runs-on: windows-latest
+    env:
+      MSYSTEM: 'MINGW64'
+      CHERE_INVOKING: 1
+      PDINCLUDEDIR: /mingw64/include
+      PDBINDIR: /mingw64/bin
+      PDLIBDIR: /mingw64/bin
+    defaults:
+      run:
+        shell: msys2 {0}
+      
+    steps:
+    - name: Setup MSYS2
+      uses: msys2/setup-msys2@v2
+      with:
+        msystem: MINGW64
+        update: true
+        install: git mingw-w64-x86_64-toolchain base-devel
+    - name: Check out mdeGranular
+      uses: actions/checkout@v2
+      with:
+        path: 'mde'
+        submodules: 'true'
+    - name: Build mdeGranular
+      run: |
+        cd $GITHUB_WORKSPACE/mde/max/windows
+        make
+    - name: Upload Binaries
+      uses: actions/upload-artifact@v2
+      with:
+        name: mdeGranular~.mxe64
+        path: ${{ github.workspace }}/mde/max/windows/mdeGranular~.mxe64
+
+
+  # System:         macOS
+  # Architecture:   MaxMSP
+  max_build_macos:
+    runs-on: macos-latest
+    steps:
+    - name: Check out mdeGranular
+      uses: actions/checkout@v2
+      with:
+        path: 'mde'
+        submodules: 'true'
+    - name: Install system libraries
+      run: brew install autoconf automake libtool tree
+    - name: Prepare mdeGranular~ XCode project
+      run: |
+        cd $GITHUB_WORKSPACE/mde/max/macosx
+        cp -R xcode ../sdk/source/audio/xcode
+        mkdir -p $GITHUB_WORKSPACE/mde/max/mdegranular/src
+        cp ../../src/* $GITHUB_WORKSPACE/mde/max/mdegranular/src
+        xcodebuild -list -project $GITHUB_WORKSPACE/mde/max/sdk/source/audio/xcode/mdeGranular~.xcodeproj
+    - name: Build mdeGranular
+      run: |
+        xcodebuild -project $GITHUB_WORKSPACE/mde/max/sdk/source/audio/xcode/mdeGranular~.xcodeproj -scheme max-external -configuration Deployment build
+    - name: Post Build deployment
+      run: |
+        cd $GITHUB_WORKSPACE/mde/max/sdk/externals/
+        mkdir temp
+        mv mdeGranular~.mxo/ temp/
+        mv temp/ mdeGranular~.mxo/
+    - name: Upload Binaries
+      uses: actions/upload-artifact@v2
+      with:
+        name: mdeGranular~.mxo
+        path: ${{ github.workspace }}/mde/max/sdk/externals/mdeGranular~.mxo
