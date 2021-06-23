@@ -1,0 +1,122 @@
+name: Build All
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+
+  # System:         Linux
+  # Architecture:   Pure Data
+  pd_build_linux:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out Pure-Data
+      uses: actions/checkout@v2
+      with:
+        repository: 'pure-data/pure-data'
+        path: 'pd'
+    - name: Check out mdeGranular
+      uses: actions/checkout@v2
+      with:
+        path: 'mde'
+    - name: Install system libraries
+      run: sudo apt-get install build-essential libasound2-dev
+    - name: Build and Install Pure-Data
+      run: |
+        cd $GITHUB_WORKSPACE/pd
+        ./autogen.sh
+        ./configure
+        make
+        sudo make install
+    - name: Build and Install mdeGranular
+      run: |
+        cd $GITHUB_WORKSPACE/mde/pd
+        make
+    - name: Upload Binaries
+      uses: actions/upload-artifact@v2
+      with:
+        name: mdeGranular~.pd_linux
+        path: ${{ github.workspace }}/mde/pd/mdeGranular~.pd_linux
+
+  # System:         macOS / Darwin
+  # Architecture:   Pure Data
+  pd_build_darwin:
+    runs-on: macos-latest
+    steps:
+    - name: Check out Pure-Data
+      uses: actions/checkout@v2
+      with:
+        repository: 'pure-data/pure-data'
+        path: 'pd'
+    - name: Check out mdeGranular
+      uses: actions/checkout@v2
+      with:
+        path: 'mde'
+    - name: Install system libraries
+      run: brew install autoconf automake libtool
+    - name: Build and Install Pure-Data
+      run: |
+        cd $GITHUB_WORKSPACE/pd
+        ./autogen.sh
+        ./configure
+        make
+        sudo make install
+    - name: Build and Install mdeGranular
+      run: |
+        cd $GITHUB_WORKSPACE/mde/pd
+        make
+    - name: Upload Binaries
+      uses: actions/upload-artifact@v2
+      with:
+        name: mdeGranular~.pd_darwin
+        path: ${{ github.workspace }}/mde/pd/mdeGranular~.pd_darwin
+
+
+  # System:         Windows
+  # Architecture:   Pure Data
+  pd_build_windows:
+    runs-on: windows-latest
+    env:
+      MSYSTEM: 'MINGW64'
+      CHERE_INVOKING: 1
+      PDINCLUDEDIR: /mingw64/include
+      PDBINDIR: /mingw64/bin
+      PDLIBDIR: /mingw64/bin
+    defaults:
+      run:
+        shell: msys2 {0}
+      
+    steps:
+    - name: Setup MSYS2
+      uses: msys2/setup-msys2@v2
+      with:
+        msystem: MINGW64
+        update: true
+        install: git mingw-w64-x86_64-toolchain base-devel
+    - name: Check out Pure-Data
+      uses: actions/checkout@v2
+      with:
+        repository: 'pure-data/pure-data'
+        path: 'pd'
+    - name: Check out mdeGranular
+      uses: actions/checkout@v2
+      with:
+        path: 'mde'
+    - name: Build and Install Pure-Data
+      run: |
+        cd $GITHUB_WORKSPACE/pd
+        ./autogen.sh
+        ./configure
+        make
+        make install
+    - name: Build and Install mdeGranular
+      run: |
+        cd $GITHUB_WORKSPACE/mde/pd
+        make
+    - name: Upload Binaries
+      uses: actions/upload-artifact@v2
+      with:
+        name: mdeGranular~.dll
+        path: ${{ github.workspace }}/mde/pd/mdeGranular~.dll

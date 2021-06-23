@@ -3,9 +3,12 @@
 This is mdeGranular~, a real-time, multi-channel, multi-voice,
 multi-transposition granular synthesis external for Max/MSP and PD.
 
-Precompiled external objects for [MaxMSP](max/mdegranular~.mxo.zip) on Mac OSX, 
-[PD](pd/mdeGranular~.pd_darwin) on Mac OSX, and [PD](pd/mdeGranular~.pd_linux) 
-on Linux, along with help files, are in the respective folders.
+
+Precompiled external objects for [MaxMSP](max/mdegranular~.mxo.zip) on Mac OSX,
+may be found in the repository. For Linux, Mac OSX and Windows precompiled
+external objects for PD are continuously built through GitHub actions and may be
+downloaded from the Actions tab. Help files can be found in the 'pd/'
+subdirectory.
 
 Documentation is on the [wiki](../../wiki).
 
