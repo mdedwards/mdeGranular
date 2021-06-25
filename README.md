@@ -3,9 +3,16 @@
 This is mdeGranular~, a real-time, multi-channel, multi-voice,
 multi-transposition granular synthesis external for Max/MSP and PD.
 
-Precompiled external objects for [MaxMSP](max/mdegranular~.mxo.zip) on Mac OSX, 
-[PD](pd/mdeGranular~.pd_darwin) on Mac OSX, and [PD](pd/mdeGranular~.pd_linux) 
-on Linux, along with help files, are in the respective folders.
+mdeGranular's binaries get continously built through GitHub Actions.
+You can find precompiled binaries readily available under this
+repository's Actions tab (see 'Build All' workflow). For Pure Data
+precompiled binaries are available on Linux, Mac OSX and Windows.
+Precompiled binaries for Max MSP are available on Mac OSX and
+Windows. Please note that the provided binaries are only compatible
+with 64-bit systems.
+
+Help files for both PD and MaxMSP may be found in the 'pd' or
+'max' subdirectories respectively.
 
 Documentation is on the [wiki](../../wiki).
 
@@ -21,11 +28,6 @@ There's a sample XCode project in the max folder. This was created for Max SDK
 put the xcode folder (containing mdegranular~.xcodeproj) into the MaxSDK folder
 "source/audio" alongside the MaxMSP example projects. From there it should build
 against the MaxMSP libraries.
-
-I haven't compiled for Max or PD on windows but the MaxSDK should be
-able to create a windows external using Visual Studio. For PD on 
-Windows I assume that the included pd-lib-builder project should take care of
-compilation. 
 
 
 Michael Edwards, March 9th 2020  
