@@ -9,7 +9,10 @@ on Linux, along with help files, are in the respective folders.
 
 Documentation is on the [wiki](../../wiki).
 
-## Compilation 
+## Compilation
+
+Github actions should now take care of compilations (thanks to René-Maurice
+Hanne!) 
 
 To compile for MaxMSP on OSX you'll need XCode and the most recent 
 [MaxSDK](https://cycling74.com/sdk/max-sdk-8.0.3/html/index.html).
