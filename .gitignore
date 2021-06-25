@@ -1,4 +1,6 @@
 .DS_Store
 max/mdegranular~.mxo
+max/windows
+max/macosx
 src/mdeGranular~.o
 src/mdeGranular~pd.o
