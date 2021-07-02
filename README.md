@@ -6,7 +6,10 @@ multi-transposition granular synthesis external for Max/MSP and PD.
 mdeGranular's binaries get continously built through GitHub Actions.
 You can find precompiled binaries readily available under this
 repository's [Actions](https://github.com/mdedwards/mdeGranular/actions)
-tab (see 'Build All' workflow). For Pure Data
+tab (see 'Build All' workflow). Just click on the latest workflow run and y
+ou'll see the latest external objects listed under Artifacts.
+
+For Pure Data
 precompiled binaries are available on Linux, Mac OSX, and Windows.
 Precompiled binaries for Max MSP are available on Mac OSX and
 Windows. Please note that the provided binaries are only compatible
