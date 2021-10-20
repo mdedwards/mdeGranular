@@ -11,16 +11,16 @@ external objects listed under 'Artifacts'. NB You do have to be logged
 in to github in order to access these, so you'll need to make an account
 first.
 
+For Pure Data, precompiled binaries are available on Linux, Mac OSX, and Windows.
+Precompiled binaries for Max MSP are available on Mac OSX and
+Windows. Please note that the provided binaries are only compatible
+with 64-bit systems.
+
 mdeGranular~.mxe64 = Max on Windows  
 mdeGranular~.mxo = Max on Mac  
 mdeGranular~.pd_linux = PD on Linux  
 mdeGranular~.dll = PD on Windows  
 mdeGranular~.pd_darwin = PD on Mac
-
-For Pure Data, precompiled binaries are available on Linux, Mac OSX, and Windows.
-Precompiled binaries for Max MSP are available on Mac OSX and
-Windows. Please note that the provided binaries are only compatible
-with 64-bit systems.
 
 Help files for both PD and MaxMSP may be found in the 'pd' or
 'max' subdirectories respectively.
