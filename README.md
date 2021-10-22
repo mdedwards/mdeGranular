@@ -5,11 +5,22 @@ multi-transposition granular synthesis external for Max/MSP and PD.
 
 mdeGranular's binaries get continously built through GitHub Actions.
 You can find precompiled binaries readily available under this
-repository's Actions tab (see 'Build All' workflow). For Pure Data
-precompiled binaries are available on Linux, Mac OSX and Windows.
+repository's [Actions](../../actions)
+tab. Just click on the latest 'workflow run' and you'll see the latest 
+external objects listed under 'Artifacts'. NB You do have to be logged
+in to github in order to access these, so you'll need to make an account
+first.
+
+For Pure Data, precompiled binaries are available on Linux, Mac OSX, and Windows.
 Precompiled binaries for Max MSP are available on Mac OSX and
 Windows. Please note that the provided binaries are only compatible
 with 64-bit systems.
+
+mdeGranular~.mxe64 = Max on Windows  
+mdeGranular~.mxo = Max on Mac  
+mdeGranular~.pd_linux = PD on Linux  
+mdeGranular~.dll = PD on Windows  
+mdeGranular~.pd_darwin = PD on Mac
 
 Help files for both PD and MaxMSP may be found in the 'pd' or
 'max' subdirectories respectively.
@@ -18,8 +29,8 @@ Documentation is on the [wiki](../../wiki).
 
 ## Compilation
 
-Github actions should now take care of compilations (thanks to René-Maurice
-Hanne!) 
+Github actions should now take care of compilations (many thanks to the brilliant René-Maurice
+Hanne for this!). However if you want to use XCode yourself on a Mac, keep reading.
 
 To compile for MaxMSP on OSX you'll need XCode and the most recent 
 [MaxSDK](https://cycling74.com/sdk/max-sdk-8.0.3/html/index.html).
