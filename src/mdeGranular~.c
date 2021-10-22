@@ -7,7 +7,7 @@
  *
  * Date:             June 13th 2003
  *
- * $$ Last modified:  12:45:02 Tue Mar 10 2020 CET
+ * $$ Last modified:  17:53:34 Tue Aug 10 2021 CEST
  *
  * Purpose:          MAX/MSP and/or PD external for multi-channel, multi-voice,
  *                   multi-transposition granular synthesis.

@@ -1,3 +1,5 @@
+# just cd to the folder this makefile is in and type 'make'
+# the external will be mdeGranular~.pd_darwin in the same folder
 # Makefile to build class 'mdeGranular' for Pure Data.
 # Needs Makefile.pdlibbuilder as helper makefile for platform-dependent build
 # settings and rules.
