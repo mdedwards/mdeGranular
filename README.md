@@ -9,12 +9,7 @@ repository's [Actions](../../actions)
 tab. Just click on the latest 'workflow run' and you'll see the latest 
 external objects listed under 'Artifacts'. NB **You have to be logged
 in to github in order to access these**, so you'll need to make an account
-first.
-
-For Pure Data, precompiled binaries are available on Linux, Mac OSX, and Windows.
-Precompiled binaries for Max MSP are available on Mac OSX and
-Windows. Please note that the provided binaries are only compatible
-with 64-bit systems.
+first. There are also archives of these builds for each platform in the builds folder.
 
 mdeGranular~.mxe64 = Max on Windows  
 mdeGranular~.mxo = Max on Mac  
