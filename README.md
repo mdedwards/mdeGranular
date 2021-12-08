@@ -7,8 +7,8 @@ mdeGranular's binaries get continously built through GitHub Actions.
 You can find precompiled binaries readily available under this
 repository's [Actions](../../actions)
 tab. Just click on the latest 'workflow run' and you'll see the latest 
-external objects listed under 'Artifacts'. NB You do have to be logged
-in to github in order to access these, so you'll need to make an account
+external objects listed under 'Artifacts'. NB **You have to be logged
+in to github in order to access these**, so you'll need to make an account
 first.
 
 For Pure Data, precompiled binaries are available on Linux, Mac OSX, and Windows.
