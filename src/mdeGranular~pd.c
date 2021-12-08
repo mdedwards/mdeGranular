@@ -7,7 +7,7 @@
  *
  * Date:             June 13th 2003
  *
- * $$ Last modified:  10:20:36 Thu Jun 18 2020 CEST
+ * $$ Last modified:  19:57:20 Wed Dec  8 2021 CET
  *
  * Purpose:          PD interface to the external for multi-channel, 
  *                   multi-voice, multi-transposition granular synthesis.
@@ -164,6 +164,7 @@ void mdeGranular_tildeSet(t_mdeGranular_tilde *x, t_symbol *s)
                          ms2samples((mdefloat)sys_getsr(),
                                     bufsize))
         < 0)
+
       pd_error(x, "mdeGranular~: couldn't init Granular object");
   }
   else { /* static buffer */
@@ -180,7 +181,7 @@ void mdeGranular_tildeSet(t_mdeGranular_tilde *x, t_symbol *s)
        https://download.puredata.info/dev/CodeSnippets#garraygetfloat */ 
     /* else if (!garray_getfloatarray(a, &nsamples, &samples)) { */
     else if (!garray_getfloatwords(a, &nsamples, (t_word**)&samples)) {      
-      error("%s: bad template for mdeGranular~", x->x_arrayname->s_name);
+      pd_error(x, "%s: bad template for mdeGranular~", x->x_arrayname->s_name);
       samples = NULL;
     }
     else {                 /* success!! */

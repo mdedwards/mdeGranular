@@ -7,7 +7,7 @@
  *
  * Date:             June 13th 2003
  *
- * $$ Last modified:  17:53:34 Tue Aug 10 2021 CEST
+ * $$ Last modified:  19:51:52 Wed Dec  8 2021 CET
  *
  * Purpose:          MAX/MSP and/or PD external for multi-channel, multi-voice,
  *                   multi-transposition granular synthesis.
@@ -513,7 +513,7 @@ void mdeGranularSetSamplesStartMS(mdeGranular* g, mdefloat f)
 void mdeGranularSetSamplesEndMS(mdeGranular* g, mdefloat f)
 {
   if (!g->nBufferSamples)
-    error("mdeGranular~: No samples in buffer %s", g->BufferName);
+    mdeGranularError("mdeGranular~: No samples in buffer %s", g->BufferName);
   g->samplesEndMS = f;
   g->samplesEnd = ms2samples(g->samplingRate, f);
   /* at init we call this function with DBL_MIN to trigger this clause */
@@ -914,7 +914,7 @@ int mdeGranularInit2(mdeGranular* g, long nOutputSamples, mdefloat rampLenMS,
     /* 2/4/08: samplingRate has been set in mdeGranular_tildeDSP before this
     function is called;  just make sure though... */
     if (!g->samplingRate)
-      error("mdeGranular~: sampling rate has not been set!");
+      mdeGranularError("mdeGranular~: sampling rate has not been set!");
     /* 2/4/08 these two calls used to be done in init1 */
     if (!mdeGranularDidInit(g)) {
       mdeGranularSetGrainLengthMS(g, (mdefloat)50.0);
@@ -938,7 +938,7 @@ int mdeGranularInit2(mdeGranular* g, long nOutputSamples, mdefloat rampLenMS,
     g->grainAmps = mdeCalloc(g->nOutputSamples, sizeof(mdefloat),
                              "mdeGranularInit2", g->warnings);
     if (!g->grainAmps)
-      error("mdeGranular~: can't allocate memory for the grain amplitudes!");
+      mdeGranularError("mdeGranular~: can't allocate memory for the grain amplitudes!");
   }
   return 0;
 }
@@ -1312,7 +1312,7 @@ void mdeGranularGo(mdeGranular* g)
 
 #ifdef DEBUG
   if (!gamp || !g)
-    error("mdeGranular~: gamp is NULL!");
+    mdeGranularError("mdeGranular~: gamp is NULL!");
   post("gamp %ld g %ld", gamp, g);
 #endif
 
@@ -1398,7 +1398,7 @@ void mdeGranularGrainMixIn(mdeGranularGrain* gg, mdeGranular* parent,
           sprintf(filename, "/temp/mdeGranular%03d.txt", file_count++);
           DebugFP = fopen(filename, "w");
           if (!DebugFP)
-            error("Can't open temp file.");
+            mdeGranularError("Can't open temp file.");
           fprintf(DebugFP, "%f\n", inc);
 #endif
           mdeGranularGrainInit(gg, parent, 0);
@@ -2035,7 +2035,7 @@ mdefloat* makeWindow(char* type, int size, mdefloat beta, mdefloat *window)
   mdefloat freq, rate, sr1, angle, expn, expsum, I0beta, cx;
 
   if (window == NULL) 
-    error("No memory for ramp!");
+    mdeGranularError("No memory for ramp!");
 
   /* Bill assumes a power of 2 window size, we don't: */
   midn = size / 2; /* size >> 1; */
@@ -2200,7 +2200,7 @@ mdefloat* makeWindow(char* type, int size, mdefloat beta, mdefloat *window)
                            (mdefloat)cos(M_PI * i / cx)));
       }
   }
-  else error("unknown ramp type: %s\n", type); 
+  else mdeGranularError("unknown ramp type: %s\n", type); 
   return(window);
 }
 

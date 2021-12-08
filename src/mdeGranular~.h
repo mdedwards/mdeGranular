@@ -7,7 +7,7 @@
  *
  * Date:             June 13th 2003
  *
- * $$ Last modified:  14:56:03 Tue Mar 10 2020 CET
+ * $$ Last modified:  19:55:42 Wed Dec  8 2021 CET
  *
  * Purpose:          Header file definitions for external for multi-channel, 
  *                   multi-voice, multi-transposition granular synthesis.
@@ -39,17 +39,21 @@
 /* define MAXMSP via the compiler rather than here */
 /* #define MAXMSP */
 
+#include <stdarg.h>
+
 #ifdef MAXMSP
 #include "ext.h"
 #include "ext_obex.h"
 #include "z_dsp.h"
 #include "buffer.h"
 #define VERSION "1.2 (Max API 8.0.3)"
+#define mdeGranularError(...) object_error(NULL, __VA_ARGS__)
 #endif
 
 #ifdef PD
 #include "m_pd.h"
 #define VERSION "1.2"
+#define mdeGranularError(...) pd_error(NULL, __VA_ARGS__)
 #endif
 
 #ifdef WIN32
