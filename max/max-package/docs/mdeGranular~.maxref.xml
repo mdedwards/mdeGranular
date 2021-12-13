@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+<c74object name="mdeGranular~">
+  <digest>multi-transposition granular synthesis
+
+  </digest>
+  <description>A Max object for multi-channel, multi-voice, multi-transposition granular synthesis
+    <br/>
+    <a href="http://www.michael-edwards.org/">Michael Edwards</a><br/>
+    <a href="http://www.michael-edwards.org/">www.michael-edwards.org</a><br/>
+    <br/><br/>
+    see
+    <a href="https://github.com/mdedwards/mdeGranular/wiki">https://github.com/mdedwards/mdeGranular/wiki</a>
+    for full documentation
+  </description>
+
+  <metadatalist>
+    <metadata name="author"></metadata>
+    <metadata name="tag"></metadata>
+  </metadatalist>
+
+  <objarglist>
+    <objarg name="number of streams" type='number'>
+      <digest>Number of voices</digest>
+      <description>Number of voices</description>
+    </objarg>
+    <objarg name="output channels" type='number'>
+      <digest>Total number of output channels</digest>
+      <description>Total number of output channels</description>
+    </objarg>
+  </objarglist>
+
+  <inletlist>
+    <inlet id="0" type="signal">
+      <digest>sigal to process
+      </digest>
+      <description>sigal to process
+      </description>
+    </inlet>
+    <inlet id="0" type="float">
+      <digest>Transposition offset in semitones
+      </digest>
+      <description>Transposition offset in semitones (default none): This may be fractional; it is added to the list of transpositions sent to the left inlet (see above), or simply transposes all the grains if no transposition list is given. [see:
+        <m>TranspositionOffsetST</m>]
+      </description>
+    </inlet>
+    <inlet id="1" type="float">
+      <digest>Grain length in milliseconds (default 50)
+      </digest>
+      <description>Grain length in milliseconds (default 50). [see:
+        <m>GrainLengthMS</m>]
+      </description>
+    </inlet>
+    <inlet id="2" type="float">
+      <digest>Grain length deviation (as a percentage) of the grain length (plus or minus, default 10%)
+      </digest>
+      <description>Grain length deviation (as a percentage) of the grain length (plus or minus, default 10%); i.e. if anything other than 0, the grain length is randomised by an amount between plus or minus the deviation percentage. [see:
+        <m>GrainLengthDeviation</m>]
+      </description>
+    </inlet>
+    <inlet id="3" type="float">
+      <digest>The minimum start point in the input buffer
+      </digest>
+      <description>The minimum start point in the input buffer (fixed or live) in milliseconds (default 0). The actual start point is a function of the grain length, and the start and end points (see below) and is randomly chosen to fit anywhere within
+        these points. [see:
+        <m>SamplesStartMS</m>]
+      </description>
+    </inlet>
+    <inlet id="4" type="float">
+      <digest>The maximum end point in the buffer in millisecs
+      </digest>
+      <description>The maximum end point in the buffer in millisecs (the default is the end of the buffer). N.B if end &lt; start then the buffer will be granulated backwards. If the difference between these two is too small for the ramp up and ramp down
+        to be accomplished, no grains will be output. [see:
+        <m>SamplesEndMS</m>]
+      </description>
+    </inlet>
+    <inlet id="5" type="float">
+      <digest>The density of the grains (as a percentage)
+      </digest>
+      <description>The density of the grains (as a percentage). 100% means a grain will start immediately every time the previous one ends, 50% means one in two grains (determined randomly) will produce no output. (Default 100%). [see:
+        <m>Density</m>]
+      </description>
+    </inlet>
+    <inlet id="6" type="float">
+      <digest>Grain amplitude (&gt;=0 and &lt;= 100, default 0.5)
+      </digest>
+      <description>Grain amplitude (&gt;=0 and &lt;= 100, default 0.5). This is a straight amplitude scaler for each grain, i.e. no account is taken of how many voices there are. N.B. when using MIDI faders, the 7-bit step between values is often large
+        enough to create a slight but audible click in output. This is corrected in mdeGranular~ by interpolating from the last to the new amplitude. The side-effect is that new amplitudes will not be accepted for an "audio tick's worth" of samples. [see:
+        <m>GrainAmp</m>]
+      </description>
+    </inlet>
+  </inletlist>
+
+  <outletlist>
+    <outlet id="0" type="float">
+      <digest></digest>
+      <description></description>
+    </outlet>
+  </outletlist>
+
+  <methodlist>
+    <method name='ActiveChannels'>
+      <digest>set the number of output channels</digest>
+      <description>An
+        <m>ActiveChannels</m>
+        x message will set the number of output channels used. This should of course be less than the number of output channels set as the object argument.
+      </description>
+    </method>
+    <method name='ActiveVoices'>
+      <digest>set the number of the maximum voices that are actually playing</digest>
+      <description>An
+        <m>ActiveVoices</m>
+        x" message will set the number of the maximum voices that are actually playing. This may be safely changed on the fly. Changing this will not instantly affect the output however as the grains are only deactivated once they have got to the end of
+        their current window.
+      </description>
+    </method>
+    <method name='bang'>
+      <digest>toggles play/stop (aka on/off) state.</digest>
+      <description>toggles play/stop (aka on/off) state.</description>
+    </method>
+    <method name='BufferGrainRamp'>
+      <digest>set buffer grain and ramp length</digest>
+      <description>A
+        <m>BufferGrainRamp</m>
+        x y z" message is useful for setting the buffer (live or static), grain length, and ramp length simultaneously. When you set these independently, checks are made to ensure you do nothing that would cause a crash (e.g. try to put impose a ramp that's
+        too long for the grain length, or a grain length that's too long for the buffer size). Because of this it's sometimes difficult to know which you should set first: the required order depends on the current and desired states. So using this method you
+        can do all three at once and have no execution order problems.
+      </description>
+    </method>
+    <method name='Density'>
+      <digest>The density of the grains (as a percentage)
+      </digest>
+      <description>The density of the grains (as a percentage). 100% means a grain will start immediately every time the previous one ends, 50% means one in two grains (determined randomly) will produce no output. (Default 100%).
+      </description>
+    </method>
+    <method name='DoGrainDelays'>
+      <digest>make each voice pause slightly
+      </digest>
+      <description>A
+        <m>DoGrainDelays</m>
+        message will make each voice (aka layer of grains) pause slightly (randomly between 0 and 200% of the grain length) when starting the next grain. This should smooth out the granulation process and avoid allgrains starting / stopping at almost the
+        same time. This is done automatically when the granulator is started and is particularly useful when switching on-the-fly from very short grain lengths toverylonggrainslengths.
+      </description>
+    </method>
+    <method name='GrainAmp'>
+      <digest>Grain amplitude (&gt;=0 and &lt;= 100, default 0.5)
+      </digest>
+      <description>Grain amplitude (&gt;=0 and &lt;= 100, default 0.5). This is a straight amplitude scaler for each grain, i.e. no account is taken of how many voices there are. N.B. when using MIDI faders, the 7-bit step between values is often large
+        enough to create a slight but audible click in output. This is corrected in mdeGranular~ by interpolating from the last to the new amplitude. The side-effect is that new amplitudes will not be accepted for an "audio tick's worth" of samples.
+      </description>
+    </method>
+    <method name='GrainLengthDeviation'>
+      <digest>Grain length deviation (as a percentage) of the grain length (plus or minus, default 10%)
+      </digest>
+      <description>Grain length deviation (as a percentage) of the grain length (plus or minus, default 10%); i.e. if anything other than 0, the grain length is randomised by an amount between plus or minus the deviation percentage.</description>
+    </method>
+    <method name='GrainLengthMS'>
+      <digest>Grain length in milliseconds (default 50)
+      </digest>
+      <description>Grain length in milliseconds (default 50).</description>
+    </method>
+    <method name='list'>
+      <digest>sets grain transpositions in semitones</digest>
+      <description>sets the transpositions in semitones (default none, limited to 256) that each grain will then choose randomly from. Given enough voices, sending the list 0,3,7, for example, will result in an audible minor triad (assuming that the input
+        is pitched material). Note that transpositions may be negative and floating point (i.e. microtonal).
+      </description>
+    </method>
+    <method name='livestart'>
+      <digest>starts recording incoming signal</digest>
+      <description>starts recording incoming signal
+      </description>
+    </method>
+    <method name='livestop'>
+      <digest>stops recording the incoming signal</digest>
+      <description>A
+        <m>livestop</m>
+        message stops recording the incoming signal so that granulation proceeds with what is already in the buffer (a granular form of sample and hold).
+      </description>
+    </method>
+    <method name='MaxLiveBufferMS'>
+      <digest>sets the maximum length of the live buffer</digest>
+      <description>A
+        <m>MaxLiveBufferMS</m>
+        x" message sets the maximum length of the live buffer (x, milliseconds). This should generally be set to the maximum you will need for your whole performance (to avoid allocating memory on the fly). In particular, because switching off the granulator
+        is not immediate (there is a ramp down to avoid clicks), you should definitely wait after doing so (one second should be enough) and before sending this message otherwise memory that has been de-allocated might be read thus causing a crash. Default =
+        10 seconds.
+      </description>
+    </method>
+    <method name='MaxVoices'>
+      <digest>set the maximum number of voices</digest>
+      <description>A
+        <m>MaxVoices</m>
+        x" message will set the maximum number of voices (layers) running. This may also cause a click in output so it's best sent when the granulator is off.
+      </description>
+    </method>
+    <method name='OctaveDivisions'>
+      <digest>change the temperament of transpositions</digest>
+      <description>change the temperament of the transpositions (once new ones are received). Temperament will remain equal but you can move away from the default temperament of 12 semitones in an octave of twice the frequency. E.g. OctaveSize 3
+        OctaveDivisions 13 would create a tempered Bohlen-Pierce scale.</description>
+    </method>
+    <method name='OctaveSize'>
+      <digest>see
+        <m>OctaveDivisions</m>
+      </digest>
+      <description>see
+        <m>OctaveDivisions</m>
+      </description>
+    </method>
+    <method name='off'>
+      <digest>turns it off: both on and off (as well as bangs) work gracefully, i.e. with a fade up/down to avoid a click. The length of the fade is the same as the grains' ramp length.</digest>
+      <description>turns it off: both on and off (as well as bangs) work gracefully, i.e. with a fade up/down to avoid a click. The length of the fade is the same as the grains' ramp length.</description>
+    </method>
+    <method name='on'>
+      <digest>turns the granulator on</digest>
+      <description>turns the granulator on</description>
+    </method>
+    <method name='Portion'>
+      <digest>sets the start/end points in the buffer</digest>
+      <description>A
+        <m>Portion</m>
+        position% width%" message sets the start/end points in the buffer by passing values in percentages: position% will set the middle point between start (0) and end (100), as determined by width% (0-100). These default to 0 and 100 respectively. For
+        convenience, a
+        <m>PortionPosition</m>
+        x" message sets the position only of the Portion algorithm. Similarly
+        <m>PortionWidth</m>
+        x" sets the width only. In each case the other parameter remains at its previous value.
+      </description>
+    </method>
+    <method name='PortionPosition'>
+      <digest>sets the position only of the
+        <m>Portion</m>
+        algorithm</digest>
+      <description>sets the position only of the
+        <m>Portion</m>
+        algorithm</description>
+    </method>
+    <method name='PortionWidth'>
+      <digest>sets the width only</digest>
+      <description>
+        sets the width only</description>
+    </method>
+    <method name='print'>
+      <digest>prints the state of the granulator to the Max window (for debugging purposes).</digest>
+      <description>prints the state of the granulator to the Max window (for debugging purposes).</description>
+    </method>
+    <method name='RampLenMS'>
+      <digest>change the ramp length</digest>
+      <description>A
+        <m>RampLenMS</m>
+        x" message (where x is the new ramp length in milliseconds) will change the ramp length. This is only possible when the granulator is off (and has finished it's fade out). The default ramp length is 10ms and the minimum is 0.5ms.
+      </description>
+    </method>
+    <method name='RampType'>
+      <digest>set ramp function</digest>
+      <description>A
+        <m>RampType</m>
+        x" message will set the type of ramp up and down; x can be one of the following standard windows (all case sensitive): HANN (or HANNING: the default, a typical bell-shaped window), TRAPEZOID (straight line ramp), RECTANGULAR (no ramp at all), WELCH,
+        PARZEN , BARTLETT, HAMMING, BLACKMAN2, BLACKMAN3, BLACKMAN4, EXPONENTIAL, KAISER, CAUCHY, POISSON, RIEMANN, GAUSSIAN, TUKEY.</description>
+    </method>
+    <method name='SamplesEndMS'>
+      <digest>The maximum end point in the buffer in millisecs
+      </digest>
+      <description>The maximum end point in the buffer in millisecs (the default is the end of the buffer). N.B if end &lt; start then the buffer will be granulated backwards. If the difference between these two is too small for the ramp up and ramp down
+        to be accomplished, no grains will be output.
+      </description>
+    </method>
+    <method name='SamplesStartMS'>
+      <digest>The minimum start point in the input buffer
+      </digest>
+      <description>The minimum start point in the input buffer (fixed or live) in milliseconds (default 0). The actual start point is a function of the grain length, and the start and end points (see below) and is randomly chosen to fit anywhere within these points.</description>
+    </method>
+    <method name='set'>
+      <digest>set buffer parameters</digest>
+      <description>sets the buffer (aka sample table, e.g. "set granbuf") to be granulated, or the length of the buffer for live granulation (e.g. "set ms1000"): If a number preceded by "ms" is given, this will be the buffer length (in milliseconds) used
+        to store incoming signal samples (e.g. ms5000 for 5 seconds), otherwise the name given is assumed to be that of an already existing sample buffer object. Changing the buffer on the fly will probably result in a click in the output so it's best to
+        switch off the granulator first, change the buffer, then switch it back on. N.B. for live buffers, this message only sets the length of the allocated buffer that will be used: to actually allocate memory for a live buffer use the
+        <m>MaxLiveBufferMS</m>
+        message (see below). The minimum size for a live buffer is 6ms. The default is a 1000ms live buffer.</description>
+    </method>
+    <method name='setms'>
+      <digest>set buffer size in milliseconds</digest>
+      <description>essentially does the same as a 'set ms...' message but allows you to avoid the 'ms' prefix onto buffer sizes; so 'set ms2000' == 'setms 2000'</description>
+    </method>
+    <method name='signal'>
+      <digest>signal to process</digest>
+      <description>Signal sent to the left inlet will be used for live granulation or ignored if the granulator is currently using another buffer (as determined by the
+        <m>set</m>
+        message, see above).</description>
+    </method>
+    <method name='SmoothMode'>
+      <digest>spread grain delays
+      </digest>
+      <description>A
+        <m>SmoothMode</m>
+        message is related to DoGrainDelays, but here the delays are no longer random. Instead they're spread out evenly (and with no grain length deviation over grain length e.g. if there are 5 active voices, each one will wait 1 / 5 of a grain length
+        before restarting. NB if ActiveVoices is changed, this will not retrigger so 'smoothness' may be interrupted. This function may also cause a click in output so it is envisaged that the object is off or the amp is at 0. Bear in mind that the
+        smoothness of the result is still dependent on the material being granulated. Also consider that if you're using a live buffer, then its length must be at least a little greater than twice the grain length (or more if transposing upwards) because we
+        avoid the portion of the live buffer that will be written into whilst the grain is playing.
+      </description>
+    </method>
+    <method name='TranspositionOffsetST'>
+      <digest>Transposition offset in semitones
+      </digest>
+      <description>Transposition offset in semitones (default none): This may be fractional; it is added to the list of transpositions sent to the left inlet (see above), or simply transposes all the grains if no transposition list is given.
+      </description>
+    </method>
+    <method name='Warnings'>
+      <digest>toggle between printing useful warnings</digest>
+      <description>A
+        <m>Warnings</m>
+        (1 or 0, default 1) message will toggle between printing useful warnings or not to the Max window i.e. Warnings 0 means the object should remain silent no matter what you tell it to do and how much sense that makes (and whether it ignores you or
+        not).</description>
+    </method>
+
+  </methodlist>
+</c74object>

@@ -1,0 +1,32 @@
+{
+  "name": "mdeGranular~",
+  "version": "1.0.0",
+  "author": "Michael Edwards",
+  "description": "A Max object for multi-channel, multi-voice, multi-transposition granular synthesis",
+  "tags": ["granular synthesis"],
+  "website": "https://github.com/mdedwards/mdeGranular/wiki",
+  "max_version_min": "8.0",
+  "max_version_max": "",
+  "os": {
+    "macintosh": {
+      "min_version": "none",
+      "platform": ["x64", "arm64"]
+    },
+    "windows" : {
+     "platform" : [ "x64" ],
+     "min_version" : "none"
+ }
+  },
+  "homepatcher": "mdeGranular~.maxhelp",
+  "package_extra": {
+    "reverse_domain": "",
+    "copyright": "GNU GENERAL PUBLIC LICENSE Version 3"
+  },
+  "filelist": {
+    "examples": [""],
+    "externals": ["mdeGranular~.mxo", "mdeGranular~.mxe64"],
+    "help": ["mdeGranular~.maxhelp"],
+    "extras": [""],
+    "docs": ["mdeGranular~.maxref.xml"]
+  }
+}
