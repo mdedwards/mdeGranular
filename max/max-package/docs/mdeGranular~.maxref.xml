@@ -20,11 +20,11 @@
   </metadatalist>
 
   <objarglist>
-    <objarg name="number of streams" type='number'>
+    <objarg name="streams" type='int'>
       <digest>Number of voices</digest>
       <description>Number of voices</description>
     </objarg>
-    <objarg name="output channels" type='number'>
+    <objarg name="channels" type='int'>
       <digest>Total number of output channels</digest>
       <description>Total number of output channels</description>
     </objarg>
