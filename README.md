@@ -35,6 +35,8 @@ put the xcode folder (containing mdegranular~.xcodeproj) into the MaxSDK folder
 "source/audio" alongside the MaxMSP example projects. From there it should build
 against the MaxMSP libraries.
 
+NB this object is not yet working on Mac M1 computers.
+
 
 Michael Edwards, March 9th 2020  
 m@michael-edwards.org  
