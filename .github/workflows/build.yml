@@ -172,6 +172,10 @@ jobs:
   max_build_macos:
     runs-on: macos-latest
     steps:
+    - name: checkout all the submodules
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
     - name: Check out mdeGranular
       uses: actions/checkout@v2
       with:

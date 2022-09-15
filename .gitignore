@@ -4,3 +4,5 @@ max/windows
 max/macosx
 src/mdeGranular~.o
 src/mdeGranular~pd.o
+mdeGranular~intel.mxo
+
