@@ -172,15 +172,11 @@ jobs:
   max_build_macos:
     runs-on: macos-latest
     steps:
-    - name: checkout all the submodules
-      uses: actions/checkout@v2
-      with:
-        submodules: recursive
     - name: Check out mdeGranular
       uses: actions/checkout@v2
       with:
         path: 'mde'
-        submodules: 'true'
+        submodules: 'recursive'
     - name: Install system libraries
       run: brew install autoconf automake libtool tree
     - name: Prepare mdeGranular~ XCode project
