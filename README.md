@@ -3,7 +3,7 @@
 This is mdeGranular~, a real-time, multi-channel, multi-voice,
 multi-transposition granular synthesis external for Max/MSP and PD.
 
-For archives of the various builds for each architecture, see [builds](../../builds).
+For archives of the various builds for each architecture, see [builds](./builds).
 
 If you're having problems with Mac M1 computers (e.g. mdeGranular~: unable to load 
 object bundle executable), open the terminal application, cd to the directory
