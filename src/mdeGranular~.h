@@ -7,7 +7,7 @@
  *
  * Date:             June 13th 2003
  *
- * $$ Last modified:  19:55:42 Wed Dec  8 2021 CET
+ * $$ Last modified:  12:38:50 Mon Sep 19 2022 CEST
  *
  * Purpose:          Header file definitions for external for multi-channel, 
  *                   multi-voice, multi-transposition granular synthesis.
@@ -46,7 +46,7 @@
 #include "ext_obex.h"
 #include "z_dsp.h"
 #include "buffer.h"
-#define VERSION "1.2 (Max API 8.0.3)"
+#define VERSION "1.2 (Max API 8.2, with M1 support)"
 #define mdeGranularError(...) object_error(NULL, __VA_ARGS__)
 #endif
 
@@ -62,7 +62,7 @@
 #ifdef PD
 #define inline 
 #else
-#define inline inline
+#define inline
 #endif
 
 /*****************************************************************************/

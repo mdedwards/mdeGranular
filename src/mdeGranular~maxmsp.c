@@ -7,7 +7,7 @@
  *
  * Date:             June 13th 2003
  *
- * $$ Last modified:  19:16:22 Thu Feb 27 2020 CET
+ * $$ Last modified:  12:09:28 Mon Sep 19 2022 CEST
  *
  * Purpose:          MAX/MSP interface to the external for multi-channel, 
  *                   multi-voice, multi-transposition granular synthesis.
@@ -219,8 +219,8 @@ void mdeGranular_tildeSet(t_mdeGranular_tilde *x, t_symbol *s)
       samples = buffer_locksamples(bobj);
       copied = mdeGranularCopyFloatSamples(g, samples, nsamples);
       mdegranular_tildeUnlockBuffer(bref);
-      if (!samples || 
-          mdeGranularInit3(g, g->theSamples, samples2ms(srate, nsamples), copied)
+      if (!samples || mdeGranularInit3(g, g->theSamples,
+                                       samples2ms(srate, nsamples), copied)
           < 0)
         post("mdeGranular~: couldn't init Granular object");
     }
