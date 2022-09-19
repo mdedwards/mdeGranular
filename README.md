@@ -3,6 +3,12 @@
 This is mdeGranular~, a real-time, multi-channel, multi-voice,
 multi-transposition granular synthesis external for Max/MSP and PD.
 
+For archives of the various builds for each architecture, see [builds](../../builds).
+
+If you're having problems with Mac M1 computers (e.g. mdeGranular~: unable to load 
+object bundle executable), open the terminal application, cd to the directory
+where you're keeping the external and run `codesign --force --deep -s - mdeGranular~.mxo`
+
 mdeGranular's binaries get continously built through GitHub Actions.
 You can find precompiled binaries readily available under this
 repository's [Actions](../../actions)
@@ -27,15 +33,7 @@ Documentation is on the [wiki](../../wiki).
 Github actions should now take care of compilations (many thanks to the brilliant René-Maurice
 Hanne for this!). However if you want to use XCode yourself on a Mac, keep reading.
 
-To compile for MaxMSP on OSX you'll need XCode and the most recent 
-[MaxSDK](https://cycling74.com/sdk/max-sdk-8.0.3/html/index.html).
-There's a sample XCode project in the max folder. This was created for Max SDK
-8.0.3 using XCode 11.3.1. It will not work directly as is, rather, you need to
-put the xcode folder (containing mdegranular~.xcodeproj) into the MaxSDK folder
-"source/audio" alongside the MaxMSP example projects. From there it should build
-against the MaxMSP libraries.
-
-NB this object is not yet working on Mac M1 computers.
+To compile for MaxMSP on OSX you'll need XCode and the most recent MaxSDK from [github](https://github.com/Cycling74/max-sdk)
 
 
 Michael Edwards, March 9th 2020  
