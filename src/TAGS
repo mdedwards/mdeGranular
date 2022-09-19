@@ -1,0 +1,232 @@
+
+mdeGranular~.c,3674
+static FILE* DebugFP 58,2205
+void mdeGranularSetActiveVoices(70,2539
+void mdeGranularSetMaxVoices(96,3269
+void mdeGranularSetRampType(116,3842
+void mdeGranularSetRampLenMS(135,4449
+void mdeGranularSetTranspositionOffsetST(191,6630
+void mdeGranularSetLiveBufferSize(204,7134
+void mdeGranularOctaveSize(240,8441
+void mdeGranularOctaveDivisions(250,8714
+mdefloat maxFloat(260,9002
+void mdeGranularSetGrainLengthMS(279,9497
+void mdeGranularDoGrainDelays(337,11776
+void mdeGranularSmoothMode(355,12240
+void mdeGranularSetGrainLengthDeviation(421,14993
+void mdeGranularPortion(433,15418
+void mdeGranularPortionPosition(475,16911
+void mdeGranularPortionWidth(480,17035
+void mdeGranularSetSamplesStartMS(487,17234
+void mdeGranularSetSamplesEndMS(513,18229
+void warnGrain2BufferLength(546,19538
+void mdeGranularSetDensity(564,20269
+void mdeGranularSetActiveChannels(573,20511
+void mdeGranularSetWarnings(598,21272
+void mdeGranularSetGrainAmp(606,21517
+void mdeGranularSetTranspositions(626,22173
+void mdeGranularOn(649,22799
+void mdeGranularClearTheSamples(659,23035
+void mdeGranularForceGrainReinit(669,23285
+void mdeGranularOff(686,23705
+int mdeGranularIsOn(694,23902
+int mdeGranularIsOff(701,24052
+void mdeGranularGrainPrint(708,24204
+void mdeGranularPrint(735,25082
+int mdeGranularAtTargetGrainAmp(793,27326
+mdefloat mdeGranularGetGrainAmpAndInc(806,27744
+void mdeGranularInitGrains(828,28396
+void mdeGranularStoreRampType(840,28693
+int mdeGranularInit1(859,29298
+int mdeGranularInit2(909,30894
+int mdeGranularDidInit(948,32401
+void mdeGranular_tildeSetF(955,32557
+int mdeGranularInit3(979,33333
+void mdeGranularFree(1040,35696
+int mdeGranularGrainInit(1074,36383
+mdefloat mdeGranularGetAmpForStatus(1252,43679
+void mdeGranularGo(1297,44748
+void mdeGranularGrainMixIn(1361,46581
+void mdeGranularCopyInputSamples(1466,50442
+long mdeGranularCopyFloatSamples(1493,51131
+mdefloat mdeGranularGrainGetRampVal(1526,52353
+int mdeGranularGrainExhausted(1554,53375
+void mdeGranularBufferGrainRamp(1562,53711
+void mdeGranularWelcome(1585,54389
+void silence(1613,55457
+mdefloat randomlyDeviate(1625,55778
+void makeRamps(1642,56301
+mdefloat st2src(1660,56793
+long ms2samples(1670,57111
+mdefloat samples2ms(1679,57403
+mdefloat interpolate(1693,57929
+mdefloat between(1754,59863
+int flip(1778,60543
+void* mdeCalloc(1791,60971
+void mdeFree(1812,61490
+int isanum(1826,61747
+void mdeGranular_tildeTranspositionOffsetST(1843,62067
+void mdeGranular_tildeGrainLengthMS(1847,62212
+void mdeGranular_tildeGrainLengthDeviation(1851,62341
+void mdeGranular_tildeSamplesStartMS(1855,62484
+void mdeGranular_tildeSamplesEndMS(1859,62615
+void mdeGranular_tildeDensity(1863,62742
+void mdeGranular_tildeActiveChannels(1867,62859
+void mdeGranular_tildeWarnings(1871,62976
+void mdeGranular_tildeGrainAmp(1875,63081
+void mdeGranular_tildeMaxVoices(1879,63200
+void mdeGranular_tildeActiveVoices(1883,63321
+void mdeGranular_tildeRampLenMS(1887,63448
+void mdeGranular_tildeRampType(1891,63569
+void mdeGranular_tildeOn(1895,63694
+void mdeGranular_tildeOff(1899,63773
+void mdeGranular_tildeSetLiveBufferSize(1903,63854
+void mdeGranular_tildeDoGrainDelays(1907,63988
+void mdeGranular_tildeSmoothMode(1911,64089
+void mdeGranular_tildeOctaveSize(1915,64184
+void mdeGranular_tildeOctaveDivisions(1919,64304
+void mdeGranular_tildePortion(1923,64434
+void mdeGranular_tildePortionPosition(1928,64626
+void mdeGranular_tildePortionWidth(1932,64770
+void mdeGranular_tildeBufferGrainRamp(1936,64902
+mdefloat square(1961,65937
+double mus_bessi0(1968,66069
+#define M_PI 2009,67302
+#define TWO_PI 2012,67379
+mdefloat* makeWindow(2022,67744
+
+mdeGranular~maxmsp.c,530
+void* mdeGranular_tildeClass;52,1973
+void* mdeGranular_tildeNew(58,2128
+void mdeGranular_tildeAssist(117,4440
+void mdeGranular_tildeLivestart(157,5624
+void mdeGranular_tildeLivestop(167,5911
+void mdeGranular_tildePrint(176,6147
+void mdeGranular_tildeSet(189,6567
+void mdegranular_tildeUnlockBuffer(236,8306
+void mspExternalPerform(249,8612
+void mdeGranular_tildeDSP(287,9781
+void mdeGranular_tildeBang(297,10147
+void mdeGranular_tildeList(311,10475
+void mdeGranular_tildeFree(325,10913
+int C74_EXPORT main(337,11165
+
+mdeGranular~pd.c,538
+static t_class *mdeGranular_tildeClass;mdeGranular_tildeClass55,2030
+void *mdeGranular_tildeNew(mdeGranular_tildeNew61,2197
+void mdeGranular_tildeLivestart(106,3800
+void mdeGranular_tildeLivestop(117,4091
+void mdeGranular_tildePrint(126,4327
+void mdeGranular_tildeSet(139,4747
+t_int *mdeGranular_tildePerform(mdeGranular_tildePerform201,6975
+void mdeGranular_tildeDSP(234,7909
+void mdeGranular_tildeBang(259,8887
+void mdeGranular_tildeList(273,9215
+void mdeGranular_tildeFree(287,9652
+void mdeGranular_tilde_setup(296,9854
+
+mdeGranular~.h,3369
+#define VERSION 49,1904
+#define mdeGranularError(50,1957
+#define VERSION 55,2055
+#define mdeGranularError(56,2077
+#define inline 60,2156
+#define inline 63,2197
+#define inline 65,2219
+typedef t_float mdefloat;77,2593
+typedef double mdefloat;82,2738
+  { OFF,89,2942
+  { OFF, ON,89,2942
+  { OFF, ON, STARTING,89,2942
+  { OFF, ON, STARTING, STOPPING,89,2942
+  { OFF, ON, STARTING, STOPPING, ACTIVE,89,2942
+  { OFF, ON, STARTING, STOPPING, ACTIVE, INACTIVE,89,2942
+  { OFF, ON, STARTING, STOPPING, ACTIVE, INACTIVE, SKIPGRAIN 89,2942
+  t_status;90,3005
+#define MAXTRANSPOSITIONS 95,3169
+#define MINLIVEBUFSIZE 98,3277
+#define DEFAULT_RAMP_TYPE 100,3305
+#define DEFAULT_RAMP_LEN 101,3341
+#define RAMPLENMINMS 102,3369
+#define UNUSED(105,3445
+typedef struct _mdeGranularGrain109,3555
+  long length;112,3623
+  mdefloat start;114,3668
+  mdefloat end;116,3711
+  long endRampUp;118,3791
+  long startRampDown;120,3875
+  mdefloat current;122,3961
+  long icurrent;124,4041
+  long rampi;126,4089
+  mdefloat inc;128,4138
+  char backwards;130,4211
+  t_status status;133,4322
+  t_status activeStatus;137,4542
+  int channel;139,4618
+  int doDelay;143,4811
+  long firstDelay;146,4951
+  long firstDelayCounter;148,5016
+} mdeGranularGrain;149,5042
+typedef struct _mdeGranular161,5435
+  mdefloat samplingRate;163,5465
+  int maxVoices;165,5558
+  int activeVoices;167,5637
+  mdefloat transpositionOffsetST;169,5710
+  mdefloat transpositionOffset;171,5780
+  int numTranspositions;174,5897
+  mdefloat transpositions[transpositions176,5995
+  mdefloat srcs[srcs179,6169
+  mdefloat grainLengthMS;181,6271
+  int grainLength;183,6356
+  mdefloat grainLengthDeviation;186,6500
+  char BufferName[BufferName188,6582
+  int numChannels;190,6645
+  int activeChannels;192,6728
+  mdefloat** channelBuffers;199,7098
+  mdefloat* signalIn;201,7179
+  long nOutputSamples;203,7271
+  mdeGranularGrain* grains;205,7349
+  mdefloat* theSamples;208,7500
+  mdefloat* samples;212,7693
+  long nBufferSamples;218,8005
+  long nAllocatedBufferSamples;221,8113
+  mdefloat AllocatedBufferMS;223,8184
+  mdefloat BufferSamplesMS;225,8277
+  mdefloat samplesStartMS;227,8357
+  long samplesStart;229,8434
+  mdefloat samplesEndMS;231,8505
+  long samplesEnd;233,8578
+  mdefloat rampLenMS;236,8685
+  long rampLenSamples;238,8745
+  mdefloat* rampUp;240,8825
+  mdefloat* rampDown;242,8871
+  mdefloat density;246,9072
+  t_status status;249,9198
+  mdefloat grainAmp;251,9265
+  mdefloat lastGrainAmp;253,9323
+  mdefloat targetGrainAmp;255,9393
+  mdefloat grainAmpInc;258,9530
+  mdefloat* grainAmps;261,9680
+  long statusRampIndex;264,9810
+  char live;267,9953
+  long liveIndex;270,10097
+  char* rampType;272,10186
+  mdefloat octaveSize;275,10325
+  mdefloat octaveDivisions;276,10348
+  char warnings;278,10449
+  mdefloat portionPosition;281,10567
+  mdefloat portionWidth;282,10595
+} mdeGranular;283,10620
+typedef struct _mdeGranular_tilde 290,10873
+  t_object x_obj;291,10909
+  t_symbol *x_arrayname;x_arrayname292,10927
+  mdeGranular x_g;293,10952
+  char x_liverunning;295,11030
+  t_float x_f;298,11185
+} t_mdeGranular_tilde;299,11200
+typedef struct _mdeGranular_tilde 304,11285
+  t_pxobject x_obj;305,11321
+  t_symbol* x_arrayname;306,11341
+  mdeGranular x_g;307,11366
+  char x_liverunning;309,11444
+} t_mdeGranular_tilde;310,11466
