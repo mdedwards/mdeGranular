@@ -31,9 +31,7 @@ Documentation is on the [wiki](../../wiki).
 ## Compilation
 
 Github actions should now take care of compilations (many thanks to the brilliant René-Maurice
-Hanne for this!). However if you want to use XCode yourself on a Mac, keep reading.
-
-To compile for MaxMSP on OSX you'll need XCode and the most recent MaxSDK from [github](https://github.com/Cycling74/max-sdk)
+Hanne for this!). However if you want to use XCode yourself on a Mac, you'll need XCode and the most recent MaxSDK from [github](https://github.com/Cycling74/max-sdk)
 
 
 Michael Edwards, March 9th 2020  
