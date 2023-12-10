@@ -188,7 +188,7 @@ jobs:
         xcodebuild -list -project $GITHUB_WORKSPACE/mde/max/sdk/source/audio/xcode/mdeGranular~.xcodeproj
     - name: Build mdeGranular
       run: |
-        xcodebuild -project $GITHUB_WORKSPACE/mde/max/sdk/source/audio/xcode/mdeGranular~.xcodeproj -scheme max-external -configuration Deployment build
+        xcodebuild -project $GITHUB_WORKSPACE/mde/max/sdk/source/audio/xcode/mdeGranular~.xcodeproj -scheme max-external -configuration Deployment build GENERATE_INFOPLIST_FILE=YES
     - name: Post Build deployment
       run: |
         cd $GITHUB_WORKSPACE/mde/max/sdk/externals/
