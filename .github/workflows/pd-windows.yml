@@ -34,12 +34,12 @@ jobs:
           msys/autoconf
           msys/automake-wrapper
     - name: Check out Pure-Data
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         repository: 'pure-data/pure-data'
         path: 'pd'
     - name: Check out mdeGranular
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         path: 'mde'
     - name: Build and Install Pure-Data
@@ -54,7 +54,7 @@ jobs:
         cd $GITHUB_WORKSPACE/mde/pd
         make
     - name: Upload Binaries
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: mdeGranular~.dll
         path: ${{ github.workspace }}/mde/pd/mdeGranular~.dll

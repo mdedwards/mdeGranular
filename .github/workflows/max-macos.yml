@@ -13,7 +13,7 @@ jobs:
     runs-on: macos-latest
     steps:
     - name: Check out mdeGranular
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         path: 'mde'
         submodules: 'recursive'
@@ -34,7 +34,7 @@ jobs:
         mv mdeGranular~.mxo/ temp/
         mv temp/ mdeGranular~.mxo/
     - name: Upload Binaries
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: mdeGranular~.mxo
         path: ${{ github.workspace }}/mde/max/cmake/build/Release/mdeGranular~.mxo

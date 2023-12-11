@@ -23,13 +23,13 @@ jobs:
       
     steps:
     - name: Setup MSYS2
-      uses: msys2/setup-msys2@v2
+      uses: msys2/setup-msys2@v4
       with:
         msystem: MINGW64
         update: true
         install: git mingw-w64-x86_64-toolchain base-devel
     - name: Check out mdeGranular
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         path: 'mde'
         submodules: 'recursive'
@@ -38,7 +38,7 @@ jobs:
         cd $GITHUB_WORKSPACE/mde/max/windows
         make
     - name: Upload Binaries
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: mdeGranular~.mxe64
         path: ${{ github.workspace }}/mde/max/windows/mdeGranular~.mxe64
