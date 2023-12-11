@@ -1,0 +1,40 @@
+name: Build MaxMSP Windows
+
+on: [workflow_dispatch, workflow_call]
+
+jobs:
+  # ==========================
+  # MaxMSP Build
+  # ==========================
+
+  # System:         macOS
+  # Architecture:   MaxMSP
+  max_build_macos:
+    runs-on: macos-latest
+    steps:
+    - name: Check out mdeGranular
+      uses: actions/checkout@v2
+      with:
+        path: 'mde'
+        submodules: 'recursive'
+    - name: Install system libraries
+      run: brew install autoconf automake libtool tree cmake
+    - name: Prepare mdeGranular~ XCode project via CMake
+      run: |
+        cd $GITHUB_WORKSPACE/mde/max/cmake
+        cmake -G Xcode -B ./build -S .
+        xcodebuild -list -project $GITHUB_WORKSPACE/mde/max/cmake/build/mdeGranular.xcodeproj
+    - name: Build mdeGranular
+      run: |
+        xcodebuild -project $GITHUB_WORKSPACE/mde/max/cmake/build/mdeGranular.xcodeproj -scheme mdeGranular -configuration Release build
+    - name: Post Build deployment
+      run: |
+        cd $GITHUB_WORKSPACE/mde/max/cmake/build/Release
+        mkdir temp
+        mv mdeGranular~.mxo/ temp/
+        mv temp/ mdeGranular~.mxo/
+    - name: Upload Binaries
+      uses: actions/upload-artifact@v2
+      with:
+        name: mdeGranular~.mxo
+        path: ${{ github.workspace }}/mde/max/cmake/build/Release/mdeGranular~.mxo

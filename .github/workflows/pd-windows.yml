@@ -1,0 +1,60 @@
+name: Build Pure-Data Windows
+
+on: [workflow_dispatch, workflow_call]
+
+jobs:
+  # ==========================
+  # Pure-Data Build
+  # ==========================
+
+  # System:         Windows
+  # Architecture:   Pure Data
+  pd_build_windows:
+    runs-on: windows-latest
+    env:
+      MSYSTEM: 'MINGW64'
+      CHERE_INVOKING: 1
+      PDINCLUDEDIR: /mingw64/include
+      PDBINDIR: /mingw64/bin
+      PDLIBDIR: /mingw64/bin
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+    - name: Setup MSYS2
+      uses: msys2/setup-msys2@v2
+      with:
+        msystem: MINGW64
+        update: true
+        install: >-
+          git
+          mingw-w64-x86_64-toolchain
+          base-devel
+          msys/libtool
+          msys/autoconf
+          msys/automake-wrapper
+    - name: Check out Pure-Data
+      uses: actions/checkout@v2
+      with:
+        repository: 'pure-data/pure-data'
+        path: 'pd'
+    - name: Check out mdeGranular
+      uses: actions/checkout@v2
+      with:
+        path: 'mde'
+    - name: Build and Install Pure-Data
+      run: |
+        cd $GITHUB_WORKSPACE/pd
+        ./autogen.sh
+        ./configure
+        make
+        make install
+    - name: Build and Install mdeGranular
+      run: |
+        cd $GITHUB_WORKSPACE/mde/pd
+        make
+    - name: Upload Binaries
+      uses: actions/upload-artifact@v2
+      with:
+        name: mdeGranular~.dll
+        path: ${{ github.workspace }}/mde/pd/mdeGranular~.dll
