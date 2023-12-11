@@ -4,17 +4,16 @@ on:
   push:
     branches:
     - master
-    - actions-fix
   workflow_dispatch:
 
 jobs:
-  # max_build_windows:
-    # uses: ./.github/workflows/max-windows.yml
+  max_build_windows:
+    uses: ./.github/workflows/max-windows.yml
   max_build_macos:
     uses: ./.github/workflows/max-macos.yml
-  # pd_build_windows:
-    # uses: ./.github/workflows/pd-windows.yml
-  # pd_build_macos:
-    # uses: ./.github/workflows/pd-macos.yml
-  # pd_build_linux:
-    # uses: ./.github/workflows/pd-linux.yml
+  pd_build_windows:
+    uses: ./.github/workflows/pd-windows.yml
+  pd_build_macos:
+    uses: ./.github/workflows/pd-macos.yml
+  pd_build_linux:
+    uses: ./.github/workflows/pd-linux.yml
