@@ -4,7 +4,7 @@ SRCDIR = ../../src
 SRC = $(SRCDIR)/mdeGranular~.c $(SRCDIR)/mdeGranular~maxmsp.c
 
 # MaxMSP SDK Setup
-C74SUPPORT = ../sdk/source/c74support
+C74SUPPORT = ../sdk/source/max-sdk-base/c74support
 
 # Compiler / Linker Setup
 CC = gcc

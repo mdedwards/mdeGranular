@@ -1,0 +1,41 @@
+name: Build Pure-Data Linux
+
+on: [workflow_dispatch, workflow_call]
+
+jobs:
+  # ==========================
+  # Pure-Data Build
+  # ==========================
+
+  # System:         Linux
+  # Architecture:   Pure Data
+  pd_build_linux:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out Pure-Data
+      uses: actions/checkout@v4
+      with:
+        repository: 'pure-data/pure-data'
+        path: 'pd'
+    - name: Check out mdeGranular
+      uses: actions/checkout@v4
+      with:
+        path: 'mde'
+    - name: Install system libraries
+      run: sudo apt-get install build-essential libasound2-dev
+    - name: Build and Install Pure-Data
+      run: |
+        cd $GITHUB_WORKSPACE/pd
+        ./autogen.sh
+        ./configure
+        make
+        sudo make install
+    - name: Build and Install mdeGranular
+      run: |
+        cd $GITHUB_WORKSPACE/mde/pd
+        make
+    - name: Upload Binaries
+      uses: actions/upload-artifact@v3
+      with:
+        name: mdeGranular~.pd_linux
+        path: ${{ github.workspace }}/mde/pd/mdeGranular~.pd_linux

@@ -1,0 +1,44 @@
+name: Build MaxMSP Windows
+
+on: [workflow_dispatch, workflow_call]
+
+jobs:
+  # ==========================
+  # MaxMSP Build
+  # ==========================
+
+  # System:         Windows
+  # Architecture:   MaxMSP
+  max_build_windows:
+    runs-on: windows-latest
+    env:
+      MSYSTEM: 'MINGW64'
+      CHERE_INVOKING: 1
+      PDINCLUDEDIR: /mingw64/include
+      PDBINDIR: /mingw64/bin
+      PDLIBDIR: /mingw64/bin
+    defaults:
+      run:
+        shell: msys2 {0}
+      
+    steps:
+    - name: Setup MSYS2
+      uses: msys2/setup-msys2@v2
+      with:
+        msystem: MINGW64
+        update: true
+        install: git mingw-w64-x86_64-toolchain base-devel
+    - name: Check out mdeGranular
+      uses: actions/checkout@v4
+      with:
+        path: 'mde'
+        submodules: 'recursive'
+    - name: Build mdeGranular
+      run: |
+        cd $GITHUB_WORKSPACE/mde/max/windows
+        make
+    - name: Upload Binaries
+      uses: actions/upload-artifact@v3
+      with:
+        name: mdeGranular~.mxe64
+        path: ${{ github.workspace }}/mde/max/windows/mdeGranular~.mxe64
